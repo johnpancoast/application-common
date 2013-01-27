@@ -44,16 +44,12 @@ class Controller_Base extends Controller {
 	 * set view class
 	 * @access public
 	 * @param string $view The view class (relative to application/classes/view/)
-	 * @param string $layout The layout file (relative to templates/layouts/)
+	 * @param array $view_data An array passed to the view controller
 	 */
-	public function set_view($view, $layout = NULL)
+	public function set_view($view, array $view_data = array())
 	{
-		if ($layout)
-		{
-			$this->set_layout($layout);
-		}
 		$class = 'View_'.$view;
-		return $this->set_view_object(new $class);
+		return $this->set_view_object(new $class($view_data));
 	}
 
 	/**
